@@ -1,13 +1,17 @@
 /*
-Handler for the createwallet command
+		Handler for CLI command createwallet
 */
 
-package main
+package cli
 
-import "fmt"
+import (
+		"fmt"
+
+		"github.com/ahermida/Identity/wallet"
+)
 
 func (cli *CLI) createWallet(nodeID string) {
-	wallets, _ := NewWallets(nodeID)
+	wallets, _ := wallet.NewWallets(nodeID)
 	address := wallets.CreateWallet()
 	wallets.SaveToFile(nodeID)
 
