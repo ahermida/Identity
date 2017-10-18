@@ -25,6 +25,16 @@ func NewWallets(nodeID string) (*Wallets, error) {
     return &wallets, err
 }
 
+// CreateWallet adds a Wallet to Wallets
+func (ws *Wallets) CreateWallet() string {
+	wallet := NewWallet()
+	address := fmt.Sprintf("%s", wallet.GetAddress())
+
+	ws.Wallets[address] = wallet
+
+	return address
+}
+
 // GetAddresses returns an array of addresses stored in the wallet file
 func (ws *Wallets) GetAddresses() []string {
     var addresses []string
