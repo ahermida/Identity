@@ -5,12 +5,10 @@
 package wallet
 
 import (
-    "bytes"
     "crypto/ecdsa"
     "crypto/elliptic"
     "crypto/rand"
     "crypto/sha256"
-    "log"
 
     "github.com/ahermida/Identity/common"
     "golang.org/x/crypto/ripemd160"
@@ -26,14 +24,14 @@ type Wallet struct {
 
 func NewWallet() *Wallet {
     private, public := newKeyPair()
-    wallet := Wallet{private, public}
+    wallet := &Wallet{private, public}
 
     return wallet
 }
 
 func newKeyPair() (ecdsa.PrivateKey, []byte){
     curve := elliptic.P256()
-    private, err := ecdsa.GenerateKey(curve, rand.Reader)
+    private, _ := ecdsa.GenerateKey(curve, rand.Reader)
     pubKey := append(private.PublicKey.X.Bytes(), private.PublicKey.Y.Bytes()...)
 
     return *private, pubKey
@@ -55,7 +53,7 @@ func HashPubKey(pubKey []byte) []byte {
     publicSHA256 := sha256.Sum256(pubKey)
 
     RIPEMD160Hasher := ripemd160.New()
-    _, err := RIPEMD160Hasher.Write(publicSHA256[:])
+    RIPEMD160Hasher.Write(publicSHA256[:])
     publicRIPEMD160 := RIPEMD160Hasher.Sum(nil)
 
     return publicRIPEMD160

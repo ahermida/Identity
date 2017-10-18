@@ -40,7 +40,7 @@ func (ws *Wallets) GetAddresses() []string {
     var addresses []string
 
     for address := range ws.Wallets {
-        addresses = append(addressesm address)
+        addresses = append(addresses, address)
     }
 
     return addresses
