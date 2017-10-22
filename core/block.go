@@ -7,22 +7,21 @@ import (
 	"time"
 )
 
-// Header holds a block's header -- we're structuring the JSON
+// Header holds a block's header
+// - we're structuring the JSON because we'll be handing this over the web
 type Header struct {
-	Nonce       int64	        `json:"nonce"`
-	Difficulty  int64	        `json:"difficulty"`
-	Number      int64           `json:"number"`
+	Version 	int 			`json:"version"`
+	Nonce       int		        `json:"nonce"`
 	Time        int64       	`json:"timestamp"`
 	Root        common.Hash     `json:"root"`
-	TxHash      common.Hash     `json:"txRoot"`
 	ParentHash  common.Hash     `json:"parentHash"`
-	Coinbase    common.Address  `json:"miner"`
 }
 
 // The in-memory representation of a block
+// - 4 byte block size,
+// - transaction counter,
+// will be calculated on the fly
 type Block struct {
 	header        *Header
 	transactions  Transactions
-	ReceivedAt    time.Time
-	ReceivedFrom  interface{}
 }
