@@ -9,6 +9,7 @@ import (
         "sync"
 
         "github.com/ahermida/Identity/db"
+        "github.com/ahermida/Identity/config"
         "github.com/hashicorp/golang-lru"
 )
 
@@ -16,7 +17,7 @@ type BlockChain struct {
 	config         config.Network   // network configuration
     params         config.Params    // chain configuration
 
-	chainDb        db.Database      // DB interface
+	chainDB        db.Database      // DB interface
 
 	genesisBlock   *Block           // First block
     tip            *Block           // Current head of the block chain

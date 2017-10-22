@@ -3,11 +3,18 @@
 */
 package config
 
-type Network struct {
+var (
+    Network = &NetworkConfig{
+        port: "8080",
+    }
+    Params = &ParamsConfig{
+        NodeID: "1337",
+    }
+)
+type NetworkConfig struct {
     port string
-    NodeID string
 }
 
-type Params struct {
-
+type ParamsConfig struct {
+    NodeID string
 }

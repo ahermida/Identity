@@ -7,8 +7,9 @@ import (
 	"flag"
 	"fmt"
 	"log"
-
 	"os"
+
+	"github.com/ahermida/Identity/config"
 )
 
 // CLI responsible for processing command line arguments
@@ -41,7 +42,7 @@ func (cli *CLI) Run() {
 
 	nodeID := os.Getenv("NODE_ID")
 	if nodeID == "" {
-		nodeID = "1337"
+		nodeID = config.NodeID
 	}
 
 	createWalletCmd := flag.NewFlagSet("createwallet", flag.ExitOnError)
