@@ -19,7 +19,7 @@ const addressChecksumLen = 4 //like btc
 
 type Wallet struct {
     PrivateKey ecdsa.PrivateKey
-    PublicKey []byte
+    PublicKey  []byte
 }
 
 func NewWallet() *Wallet {
@@ -37,7 +37,7 @@ func newKeyPair() (ecdsa.PrivateKey, []byte){
     return *private, pubKey
 }
 
-func (w Wallet) GetAddress() []byte {
+func (w Wallet) GetAddress() common.Address {
     pubKeyHash := HashPubKey(w.PublicKey)
 
     versionedPayload := append([]byte{version}, pubKeyHash...)

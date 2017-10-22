@@ -41,9 +41,9 @@ func (cli *CLI) Run() {
 
 	nodeID := os.Getenv("NODE_ID")
 	if nodeID == "" {
-		fmt.Printf("NODE_ID env. var is not set!")
-		os.Exit(1)
+		nodeID = "1337"
 	}
+
 	createWalletCmd := flag.NewFlagSet("createwallet", flag.ExitOnError)
 	listAddressesCmd := flag.NewFlagSet("listaddresses", flag.ExitOnError)
 	//getBalanceCmd := flag.NewFlagSet("getbalance", flag.ExitOnError)
